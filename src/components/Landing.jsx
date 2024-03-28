@@ -13,7 +13,7 @@ export default function Landing() {
           <div className="header__input--wrapper">
             <form action="">
               <input
-                class="header__input"
+                className="header__input"
                 type="text"
                 placeholder="Search Movies"
               />

@@ -20,7 +20,6 @@ export default function Nav() {
               Search
             </Link>
           </li>
-          <button class="nav__btn no-cursor">CONTACT</button>
         </ul>
       </div>
     </nav>
