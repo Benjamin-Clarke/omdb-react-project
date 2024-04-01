@@ -64,10 +64,7 @@ export default function Search() {
               {search.map((movie) => (
                 <ResultCard
                   key={movie.imdbID}
-                  id={movie.imdbID}
-                  title={movie.Title}
-                  year={movie.Year}
-                  poster={movie.Poster}
+                  movie={movie}
                 />
               ))}
             </div>

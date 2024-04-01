@@ -232,3 +232,36 @@ img {
   font-weight: 300;
   color: #e50914;
 }
+
+/* Skeleton Loading State */
+
+.movie__img--skeleton {
+  width: 100%;
+  max-width: 250px;
+  height: 320px;
+  background-color: rgb(204, 204, 204);
+  margin-bottom: 8px;
+}
+
+.skeleton {
+  background-color: rgb(227, 227, 227) !important;
+  margin-bottom: 8px;
+}
+
+.movie__title--skeleton {
+  height: 21px;
+  width: 100%;
+}
+
+.movie__year--skeleton {
+  width: 100px;
+  height: 19px;
+}
+
+/* SMALL PHONES, TABLETS, LARGE SMARTPHONES */
+@media (max-width: 768px) {
+  .movie__card {
+    width: 50%;
+    padding: 12px 0;
+  }
+}
