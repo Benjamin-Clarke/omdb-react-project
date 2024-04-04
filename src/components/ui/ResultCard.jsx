@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-export default function ResultCard({ movie, id }) {
+export default function ResultCard({ movie }) {
   const [img, setImg] = useState();
 
   const mountedRef = useRef(true);
@@ -22,7 +22,7 @@ export default function ResultCard({ movie, id }) {
   return (
     <div className="movie__card">
       {img ? (
-        <Link to={`/search/${id}`}>
+        <Link to={`/search/${movie.imdbID}`}>
           <img className="card__img" src={movie.Poster} alt="" />
           <h2 className="movie__title">{movie.Title}</h2>
           <h3 className="movie__year">{movie.Year}</h3>

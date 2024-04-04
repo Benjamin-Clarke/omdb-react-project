@@ -13,7 +13,7 @@ function App() {
         <Nav />
         <Routes>
         <Route path="/" exact element={<Home/>} />
-        <Route path="/search" element={<Search/>} />
+        <Route path="/search" element={<Search />} />
         <Route path="/search/:id" element={<MovieInfo/>} />
         </Routes>
       </Router>

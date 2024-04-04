@@ -1,26 +1,37 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ResultCard from "../components/ui/ResultCard";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useLocation } from "react-router-dom";
 
 export default function Search() {
   const [search, setSearch] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [loading, setLoading] = useState(false);
+  const location = useLocation();
+
+  useEffect(() => {
+    if(location.state) {
+        fetchMovies(location.state.homeSearchInput);
+    }
+  }, [location.state])
 
   async function fetchMovies(searchValue) {
+    setLoading(true);
     const { data } = await axios.get(
       `http://www.omdbapi.com/?apikey=c636b946&s=${searchValue}`
     );
+    //console.log(data)
     if (data.Response === "True") {
       setSearch(data.Search);
     }
-    if (search.length > 0) {
-      console.log(search);
-    }
+    
+    setLoading(false);
   }
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(searchInput);
+    //console.log(searchInput);
     if (searchInput) {
       fetchMovies(searchInput);
     }
@@ -45,11 +56,13 @@ export default function Search() {
                   <button
                     id="submit-button"
                     className="header__input"
-                    //onClick={(event) => test(event.target.value)}
-                    onClick={(event) => console.log(event.target.value)}
+                    //onClick={(event) => console.log(event.target.value)}
                   >
-                    {/*<i className="fa-solid fa-magnifying-glass"></i>*/}
-                    search
+                    {loading ? (
+                      <FontAwesomeIcon icon="fa-solid fa-spinner" />
+                    ) : (
+                      <FontAwesomeIcon icon="fa-solid fa-magnifying-glass" />
+                    )}
                   </button>
                 </form>
               </div>
@@ -61,12 +74,12 @@ export default function Search() {
         <div className="container">
           <div className="row">
             <div className="results__wrapper">
-              {search.map((movie) => (
-                <ResultCard
-                  key={movie.imdbID}
-                  movie={movie}
-                />
-              ))}
+              {search.map((movie) => {
+                if(movie.Poster !== "N/A") {
+                    return <ResultCard key={movie.imdbID} movie={movie} />
+                }
+                return null
+                })}
             </div>
           </div>
         </div>

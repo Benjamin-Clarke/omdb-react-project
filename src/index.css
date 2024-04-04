@@ -43,6 +43,14 @@ h2 {
   text-align: center;
 }
 
+button {
+  cursor: pointer;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
 ::placeholder{
   opacity: 0.3;
 }
@@ -176,6 +184,11 @@ img {
   text-align: center;
   padding: 12px;
   margin: 0 auto;
+  transition: all 300ms ease;
+}
+
+.movie__card:hover {
+  transform: translateY(-4px);
 }
 
 .results__wrapper {
@@ -251,6 +264,7 @@ img {
 .movie__title--skeleton {
   height: 21px;
   width: 100%;
+  max-width: 250px;
 }
 
 .movie__year--skeleton {
@@ -258,10 +272,24 @@ img {
   height: 19px;
 }
 
+.fa-spinner {
+  animation: rotate 600ms infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 /* SMALL PHONES, TABLETS, LARGE SMARTPHONES */
 @media (max-width: 768px) {
   .movie__card {
     width: 50%;
-    padding: 12px 0;
+    padding: 12px 8px;
   }
 }
