@@ -1,8 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import KnightLogo from "../assets/knightLogo.png";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Nav() {
+    function openMenu() {
+        document.body.classList += ' menu--open'
+    }
+
+    function closeMenu() {
+        document.body.classList.remove("menu--open")
+    }
   return (
     <nav>
       <div className="nav__container">
@@ -17,6 +25,26 @@ export default function Nav() {
           </li>
           <li className="nav__link">
             <Link to="/search" className="nav__link">
+              Search
+            </Link>
+          </li>
+          <button className="btn__menu" onClick={openMenu}>
+            <FontAwesomeIcon icon="fa-solid fa-bars" />
+          </button>
+        </ul>
+      </div>
+      <div className="menu__backdrop">
+        <button className="btn__close btn__menu--close" onClick={closeMenu}>
+          <FontAwesomeIcon icon="times" />
+        </button>
+        <ul className="menu__links">
+          <li className="menu__link">
+            <Link to="/" className="white" onClick={closeMenu}>
+              Home
+            </Link>
+          </li>
+          <li className="menu__link">
+            <Link to="/search" className="white" onClick={closeMenu}>
               Search
             </Link>
           </li>

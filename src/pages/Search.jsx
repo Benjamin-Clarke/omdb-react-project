@@ -11,10 +11,10 @@ export default function Search() {
   const location = useLocation();
 
   useEffect(() => {
-    if(location.state) {
-        fetchMovies(location.state.homeSearchInput);
+    if (location.state) {
+      fetchMovies(location.state.homeSearchInput);
     }
-  }, [location.state])
+  }, [location.state]);
 
   async function fetchMovies(searchValue) {
     setLoading(true);
@@ -25,7 +25,7 @@ export default function Search() {
     if (data.Response === "True") {
       setSearch(data.Search);
     }
-    
+
     setLoading(false);
   }
 
@@ -36,6 +36,23 @@ export default function Search() {
       fetchMovies(searchInput);
     }
   };
+
+  function filterMovies(value) {
+    if(value === "OLD_TO_NEW") {
+        setSearch(
+            search
+            .slice()
+            .sort((a,b) => (a.Year - b.Year))
+        )
+    } 
+    if (value === "NEW_TO_OLD") {
+        setSearch(
+            search
+            .slice()
+            .sort((b,a) => (a.Year - b.Year))
+        )
+    }
+}
 
   return (
     <>
@@ -70,16 +87,32 @@ export default function Search() {
           </div>
         </div>
       </section>
+      <section id="filter">
+        <div className="filter__wrapper">
+          <select
+            id="filter"
+            defaultValue=""
+            onChange={(event) => filterMovies(event.target.value)}
+          >
+            <option value="" disabled>
+              {" "}
+              Sort{" "}
+            </option>
+            <option value="OLD_TO_NEW">Year, Old to New</option>
+            <option value="NEW_TO_OLD">Year, New to Old</option>
+          </select>
+        </div>
+      </section>
       <section id="results">
         <div className="container">
           <div className="row">
             <div className="results__wrapper">
               {search.map((movie) => {
-                if(movie.Poster !== "N/A") {
-                    return <ResultCard key={movie.imdbID} movie={movie} />
+                if (movie.Poster !== "N/A") {
+                  return <ResultCard key={movie.imdbID} movie={movie} />;
                 }
-                return null
-                })}
+                return null;
+              })}
             </div>
           </div>
         </div>
