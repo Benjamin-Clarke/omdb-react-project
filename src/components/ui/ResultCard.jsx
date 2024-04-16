@@ -24,8 +24,10 @@ export default function ResultCard({ movie }) {
       {img ? (
         <Link to={`/search/${movie.imdbID}`}>
           <img className="card__img" src={movie.Poster} alt="" />
-          <h2 className="movie__title">{movie.Title}</h2>
-          <h3 className="movie__year">{movie.Year}</h3>
+          <div className="card__info">
+            <h2 className="movie__title">{movie.Title}</h2>
+            <h3 className="movie__year">{movie.Year}</h3>
+          </div>
         </Link>
       ) : (
         <>

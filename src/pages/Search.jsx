@@ -9,6 +9,7 @@ export default function Search() {
   const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(false);
   const location = useLocation();
+  const [emptySearch, setEmptySearch] = useState(false);
 
   useEffect(() => {
     if (location.state) {
@@ -24,6 +25,9 @@ export default function Search() {
     //console.log(data)
     if (data.Response === "True") {
       setSearch(data.Search);
+      setEmptySearch(false);
+    } else {
+        setEmptySearch(true);
     }
 
     setLoading(false);
@@ -107,12 +111,19 @@ export default function Search() {
         <div className="container">
           <div className="row">
             <div className="results__wrapper">
-              {search.map((movie) => {
+              {!emptySearch ? (
+              search.map((movie) => {
                 if (movie.Poster !== "N/A") {
                   return <ResultCard key={movie.imdbID} movie={movie} />;
                 }
                 return null;
-              })}
+              })) : (
+                <div className="empty__search">
+                    Invalid search input, try searching something else!
+                </div>
+              )
+              
+              }
             </div>
           </div>
         </div>

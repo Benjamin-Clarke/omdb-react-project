@@ -204,6 +204,15 @@ img {
   transition: all 300ms ease;
 }
 
+.card__info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 200px;
+  margin: 0 auto;
+  width: 100%;
+}
+
 .movie__card:hover {
   transform: translateY(-4px);
 }
@@ -225,6 +234,12 @@ img {
 
 #search, #results {
   background-color: var(--colour-tertiary);
+}
+
+.empty__search {
+  text-align: center;
+  margin: 20px auto;
+  color: #e50914;
 }
 
 /*Movie info page*/
@@ -368,6 +383,14 @@ img {
   .movie__card {
     width: 50%;
     padding: 12px 8px;
+  }
+
+  .movie_info__wrapper {
+    flex-direction: column;
+  }
+
+  .movie__poster {
+    margin: 40px auto;
   }
 }
 
