@@ -378,6 +378,100 @@ img {
   padding: 10px;
 }
 
+/* Login Page */
+
+.login__wrapper {
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 40%;
+  border-radius: 8px;
+  padding: 12px;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__email {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 2px;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+}
+
+.login__pass {
+  width: 100%;
+  margin-bottom: 10px;
+  padding: 2px;
+  border-radius: 4px;
+  border: 1px solid lightgrey;
+}
+
+.login__submit {
+  border-radius: 12px;
+  border: none;
+  background-color: #e50914;
+  padding: 6px;
+  margin: 20px auto;
+  width: 50%;
+  color: #f5f5f1;
+  font-weight: 700;
+}
+
+.login__submit:hover {
+  background-color: #cb0b15;
+  transition: 100ms all ease;
+}
+
+.login__divider {
+  border-top: 2px solid lightgrey;
+  border-bottom: none;
+  width: 100%;
+  margin: 4px auto;
+}
+
+.login__text {
+  color: grey;
+  font-size: 12px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.login__signup {
+  color: #e50914;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 2px;
+}
+
+.login__signup:hover {
+  border-bottom: 2px solid #e50914;
+  margin: 0 auto;
+  cursor: pointer;
+  transition: 200ms all ease;
+}
+
+.register__text {
+  cursor: pointer;
+  text-align: end;
+  color: grey;
+  font-size: 12px;
+}
+
+.register__text:hover {
+  border-bottom: 2px solid grey;
+  transition: 100ms all ease;
+  margin-left: auto;
+}
+
+label {
+  color: #e50914;
+  margin-bottom: 2px;
+}
+
 /* SMALL PHONES, TABLETS, LARGE SMARTPHONES */
 @media (max-width: 768px) {
   .movie__card {
@@ -391,6 +485,11 @@ img {
 
   .movie__poster {
     margin: 40px auto;
+  }
+
+  .login__wrapper {
+    width: 60%;
+    margin: 0 auto;
   }
 }
 
