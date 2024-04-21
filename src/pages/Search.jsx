@@ -25,7 +25,7 @@ export default function Search() {
     //console.log(data)
     if (data.Response === "True") {
       setSearch(data.Search);
-      setEmptySearch(false);
+      setEmptySearch(true);
     } else {
         setEmptySearch(true);
     }

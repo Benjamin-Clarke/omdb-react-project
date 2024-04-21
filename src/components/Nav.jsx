@@ -1,16 +1,26 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import KnightLogo from "../assets/knightLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function Nav() {
-    function openMenu() {
-        document.body.classList += ' menu--open'
-    }
+  const location = useLocation();
+  const [email, setEmail] = useState("");
 
-    function closeMenu() {
-        document.body.classList.remove("menu--open")
+  function openMenu() {
+    document.body.classList += " menu--open";
+  }
+
+  function closeMenu() {
+    document.body.classList.remove("menu--open");
+  }
+
+  useEffect(() => {
+    if (location.state) {
+      setEmail(location.state.email);
     }
+  }, [location.state]);
+
   return (
     <nav>
       <div className="nav__container">
@@ -28,6 +38,9 @@ export default function Nav() {
               Search
             </Link>
           </li>
+          <button className="nav__account">
+            {email.charAt(0).toUpperCase()}
+          </button>
           <button className="btn__menu" onClick={openMenu}>
             <FontAwesomeIcon icon="fa-solid fa-bars" />
           </button>
