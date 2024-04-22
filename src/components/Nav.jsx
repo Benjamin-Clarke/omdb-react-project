@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import KnightLogo from "../assets/knightLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { signOut } from "firebase/auth";
+import { auth } from "../firebase/init";
 
 export default function Nav() {
   const location = useLocation();
-  const [email, setEmail] = useState("");
+ // const [email, setEmail] = useState("");
 
   function openMenu() {
     document.body.classList += " menu--open";
@@ -15,11 +16,11 @@ export default function Nav() {
     document.body.classList.remove("menu--open");
   }
 
-  useEffect(() => {
-    if (location.state) {
-      setEmail(location.state.email);
-    }
-  }, [location.state]);
+  function logout() {
+    closeMenu();
+    signOut(auth);
+  }
+
 
   return (
     <nav>
@@ -38,9 +39,11 @@ export default function Nav() {
               Search
             </Link>
           </li>
-          <button className="nav__account">
-            {email.charAt(0).toUpperCase()}
-          </button>
+          <Link to="/login" className="white" onClick={logout}>
+            <button className="nav__account">
+              {location?.state?.email?.charAt(0)?.toUpperCase()}
+            </button>
+          </Link>
           <button className="btn__menu" onClick={openMenu}>
             <FontAwesomeIcon icon="fa-solid fa-bars" />
           </button>
@@ -59,6 +62,11 @@ export default function Nav() {
           <li className="menu__link">
             <Link to="/search" className="white" onClick={closeMenu}>
               Search
+            </Link>
+          </li>
+          <li className="menu__link">
+            <Link to="/login" className="white" onClick={logout}>
+              Logout
             </Link>
           </li>
         </ul>

@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import ResultCard from "../components/ui/ResultCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation } from "react-router-dom";
+import Nav from "../components/Nav";
 
 export default function Search() {
   const [search, setSearch] = useState([]);
@@ -25,9 +26,9 @@ export default function Search() {
     //console.log(data)
     if (data.Response === "True") {
       setSearch(data.Search);
-      setEmptySearch(true);
+      setEmptySearch(false);
     } else {
-        setEmptySearch(true);
+      setEmptySearch(true);
     }
 
     setLoading(false);
@@ -42,24 +43,17 @@ export default function Search() {
   };
 
   function filterMovies(value) {
-    if(value === "OLD_TO_NEW") {
-        setSearch(
-            search
-            .slice()
-            .sort((a,b) => (a.Year - b.Year))
-        )
-    } 
-    if (value === "NEW_TO_OLD") {
-        setSearch(
-            search
-            .slice()
-            .sort((b,a) => (a.Year - b.Year))
-        )
+    if (value === "OLD_TO_NEW") {
+      setSearch(search.slice().sort((a, b) => a.Year - b.Year));
     }
-}
+    if (value === "NEW_TO_OLD") {
+      setSearch(search.slice().sort((b, a) => a.Year - b.Year));
+    }
+  }
 
   return (
     <>
+      <Nav />
       <section id="search">
         <div className="row">
           <div className="container">
@@ -112,18 +106,17 @@ export default function Search() {
           <div className="row">
             <div className="results__wrapper">
               {!emptySearch ? (
-              search.map((movie) => {
-                if (movie.Poster !== "N/A") {
-                  return <ResultCard key={movie.imdbID} movie={movie} />;
-                }
-                return null;
-              })) : (
+                search.map((movie) => {
+                  if (movie.Poster !== "N/A") {
+                    return <ResultCard key={movie.imdbID} movie={movie} />;
+                  }
+                  return null;
+                })
+              ) : (
                 <div className="empty__search">
-                    Invalid search input, try searching something else!
+                  Invalid search input, try searching something else!
                 </div>
-              )
-              
-              }
+              )}
             </div>
           </div>
         </div>

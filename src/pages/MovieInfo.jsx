@@ -1,11 +1,14 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import Nav from "../components/Nav";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default function MovieInfo() {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [modal, setModal] = useState(false);
 
   async function fetchMovie() {
     const { data } = await axios.get(
@@ -21,8 +24,35 @@ export default function MovieInfo() {
     fetchMovie();
   });
 
+  function toggleModal() {
+    setModal(!modal);
+  }
+
+  if (modal) {
+    document.body.classList.add("active-modal");
+  } else {
+    document.body.classList.remove("active-modal");
+  }
+
   return (
     <div>
+      <Nav />
+      {modal && (
+        <div className="modal__wrapper">
+          <div className="modal__overlay" onClick={toggleModal}></div>
+          <button
+            className="btn__close btn__menu--close fixed"
+            onClick={toggleModal}
+          >
+            <FontAwesomeIcon icon="times" />
+          </button>
+          <div className="modal__window">
+            <figure className="modal__img">
+              <img src={movie.Poster} alt="" />
+            </figure>
+          </div>
+        </div>
+      )}
       {!loading && (
         <div className="container">
           <div className="row">
@@ -60,7 +90,7 @@ export default function MovieInfo() {
                 <br />
                 <p className="movie__plot">{movie.Plot}</p>
               </div>
-              <figure className="movie__poster">
+              <figure className="movie__poster" onClick={toggleModal}>
                 <img src={movie.Poster} alt="" />
               </figure>
             </div>

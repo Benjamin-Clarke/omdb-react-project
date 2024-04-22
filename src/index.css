@@ -276,6 +276,7 @@ img {
   width: 100%;
   height: auto;
   max-width: 300px;
+  cursor: pointer;
 }
 
 .ratings__wrapper {
@@ -470,6 +471,10 @@ img {
   transition: 200ms all ease;
 }
 
+.login__page {
+  margin-top: 5%;
+}
+
 .register__text {
   cursor: pointer;
   text-align: end;
@@ -486,6 +491,48 @@ img {
 label {
   color: #e50914;
   margin-bottom: 2px;
+}
+
+/*Modal*/ 
+
+.modal__wrapper .modal__overlay {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+}
+
+.modal__overlay {
+  background-color: #242424ee;
+}
+
+.modal__img {
+  height: 70vh;
+  z-index: 50;
+  margin-top: 20px;
+
+}
+
+.fixed {
+  position: fixed;
+}
+
+.modal__window { 
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 60px;
+  border-radius: 3px;
+  justify-content: center;
+  align-items: center;
+}
+
+.active-modal {
+  overflow-y: hidden;
 }
 
 /* SMALL PHONES, TABLETS, LARGE SMARTPHONES */

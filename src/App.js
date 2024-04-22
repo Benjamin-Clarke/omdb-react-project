@@ -1,7 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Search from "./pages/Search";
-import Nav from "./components/Nav";
 import MovieInfo from "./pages/MovieInfo";
 import Login from "./pages/Login";
 
@@ -11,7 +10,6 @@ function App() {
   return (
     <div className="App">
       <Router>
-        <Nav />
         <Routes>
         <Route path="/login" exact element={<Login/>} />
         <Route path="/" exact element={<Home/>} />

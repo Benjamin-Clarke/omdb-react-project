@@ -49,7 +49,7 @@ export default function Login() {
   }
 
   return (
-    <>
+    <div className="login__page">
       {register ? (
         <section id="register">
           <div className="container">
@@ -135,6 +135,7 @@ export default function Login() {
           </div>
         </section>
       )}
-    </>
+    <div/>
+    </div>
   );
 }
