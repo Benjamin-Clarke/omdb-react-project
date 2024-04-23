@@ -3,8 +3,9 @@ import Home from "./pages/Home";
 import Search from "./pages/Search";
 import MovieInfo from "./pages/MovieInfo";
 import Login from "./pages/Login";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { useState } from "react";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
+import { useEffect, useState } from "react";
+import { auth } from "./firebase/init";
 
 function App() {
   const navigate = useNavigate();
@@ -47,6 +48,22 @@ function App() {
         // ..
       });
   }
+
+  useEffect(
+    () =>
+      onAuthStateChanged(auth, (user) => {
+        if (user) {
+          // Logged in...
+          setUser(user)
+        } else {
+          // Not logged in...
+          setUser(null)
+          navigate("/login");
+        }
+
+      }),
+    [navigate]
+  )
 
   return (
     <div className="App">
