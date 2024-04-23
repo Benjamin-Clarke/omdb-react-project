@@ -70,7 +70,7 @@ export default function Search() {
                   />
                   <button
                     id="submit-button"
-                    className="header__input"
+                    className="header__input search__btn"
                     //onClick={(event) => console.log(event.target.value)}
                   >
                     {loading ? (

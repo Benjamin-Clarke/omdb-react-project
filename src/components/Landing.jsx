@@ -31,7 +31,7 @@ export default function Landing() {
               />
               <button
                 id="submit-button"
-                className="header__input"
+                className="header__input search__btn"
                 //onClick={(event) => console.log(event.target.value)}
                 
               >

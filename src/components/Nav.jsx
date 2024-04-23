@@ -6,7 +6,7 @@ import { auth } from "../firebase/init";
 
 export default function Nav() {
   const location = useLocation();
- // const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
 
   function openMenu() {
     document.body.classList += " menu--open";
@@ -20,7 +20,6 @@ export default function Nav() {
     closeMenu();
     signOut(auth);
   }
-
 
   return (
     <nav>
@@ -39,11 +38,16 @@ export default function Nav() {
               Search
             </Link>
           </li>
-          <Link to="/login" className="white" onClick={logout}>
-            <button className="nav__account">
+          <div className="nav__dropdown">
+            <button className="nav__dropdown_btn">
               {location?.state?.email?.charAt(0)?.toUpperCase()}
             </button>
-          </Link>
+            <div className="nav__dropdown_content">
+              <Link to="/login" className="white" onClick={logout}>
+                Logout
+              </Link>
+            </div>
+          </div>
           <button className="btn__menu" onClick={openMenu}>
             <FontAwesomeIcon icon="fa-solid fa-bars" />
           </button>
