@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Nav from "../components/Nav";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-export default function MovieInfo() {
+export default function MovieInfo({user}) {
   const { id } = useParams();
   const [movie, setMovie] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -36,7 +36,7 @@ export default function MovieInfo() {
 
   return (
     <div>
-      <Nav />
+      <Nav user={user}/>
       {modal && (
         <div className="modal__wrapper">
           <div className="modal__overlay" onClick={toggleModal}></div>

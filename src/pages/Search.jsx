@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation } from "react-router-dom";
 import Nav from "../components/Nav";
 
-export default function Search() {
+export default function Search({user}) {
   const [search, setSearch] = useState([]);
   const [searchInput, setSearchInput] = useState("");
   const [loading, setLoading] = useState(false);
@@ -53,7 +53,7 @@ export default function Search() {
 
   return (
     <>
-      <Nav />
+      <Nav user={user}/>
       <section id="search">
         <div className="row">
           <div className="container">

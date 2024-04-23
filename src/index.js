@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faMagnifyingGlass, faSpinner, faBars, faTimes } from '@fortawesome/free-solid-svg-icons';
+import { BrowserRouter } from 'react-router-dom';
 
 
 library.add( faMagnifyingGlass, faSpinner, faBars, faTimes )
@@ -12,7 +13,9 @@ library.add( faMagnifyingGlass, faSpinner, faBars, faTimes )
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 

@@ -1,52 +1,10 @@
 import React, { useState } from "react";
 import { auth } from "../firebase/init";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
-import { useNavigate } from "react-router-dom";
 
-export default function Login() {
-  const navigate = useNavigate();
+export default function Login({ signIn, signUp }) {
   const [register, setRegister] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-
-  function handleRegisterSubmit(e, auth, email, password) {
-    e.preventDefault();
-    createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed up
-        const user = userCredential.user;
-        console.log(user);
-        navigate("/");
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage);
-        // ..
-      });
-  }
-
-  function handleSignIn(e, auth, email, password) {
-    e.preventDefault();
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Signed in
-        const user = userCredential.user;
-        console.log(user);
-        navigate("/", {state:{email:email}});
-        // ...
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorCode + errorMessage)
-      });
-  }
 
   return (
     <div className="login__page">
@@ -77,7 +35,7 @@ export default function Login() {
                     className="login__submit"
                     type="submit"
                     onClick={(e) =>
-                      handleRegisterSubmit(e, auth, email, password)
+                      signUp(e, auth, email, password)
                     }
                   >
                     Register
@@ -120,7 +78,7 @@ export default function Login() {
                   />
                   <button
                     className="login__submit"
-                    onClick={(e) => handleSignIn(e, auth, email, password)}
+                    onClick={(e) => signIn(e, auth, email, password)}
                   >
                     Sign In
                   </button>

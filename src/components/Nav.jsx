@@ -1,13 +1,10 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import KnightLogo from "../assets/knightLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/init";
 
-export default function Nav() {
-  const location = useLocation();
-  // const [email, setEmail] = useState("");
-
+export default function Nav({user}) {
   function openMenu() {
     document.body.classList += " menu--open";
   }
@@ -40,7 +37,7 @@ export default function Nav() {
           </li>
           <div className="nav__dropdown">
             <button className="nav__dropdown_btn">
-              {location?.state?.email?.charAt(0)?.toUpperCase()}
+              {user?.email?.charAt(0)?.toUpperCase()}
             </button>
             <div className="nav__dropdown_content">
               <Link to="/login" className="white" onClick={logout}>
