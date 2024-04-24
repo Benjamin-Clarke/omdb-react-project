@@ -3,8 +3,10 @@ import KnightLogo from "../assets/knightLogo.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase/init";
+import { useEffect, useState } from "react";
 
-export default function Nav({user}) {
+export default function Nav({ user }) {
+  const [loading, setLoading] = useState(false);
   function openMenu() {
     document.body.classList += " menu--open";
   }
@@ -17,6 +19,13 @@ export default function Nav({user}) {
     closeMenu();
     signOut(auth);
   }
+
+  useEffect(() => {
+    setLoading(true);
+    if (user) {
+      setLoading(false);
+    }
+  }, [user]);
 
   return (
     <nav>
@@ -35,16 +44,20 @@ export default function Nav({user}) {
               Search
             </Link>
           </li>
-          <div className="nav__dropdown">
-            <button className="nav__dropdown_btn">
-              {user?.email?.charAt(0)?.toUpperCase()}
-            </button>
-            <div className="nav__dropdown_content">
-              <Link to="/login" className="white" onClick={logout}>
-                Logout
-              </Link>
+          {loading ? (
+            <button className="nav__dropdown_btn colour-grey"></button>
+          ) : (
+            <div className="nav__dropdown">
+              <button className="nav__dropdown_btn">
+                {user?.email?.charAt(0)?.toUpperCase()}
+              </button>
+              <div className="nav__dropdown_content">
+                <Link to="/login" className="white" onClick={logout}>
+                  Logout
+                </Link>
+              </div>
             </div>
-          </div>
+          )}
           <button className="btn__menu" onClick={openMenu}>
             <FontAwesomeIcon icon="fa-solid fa-bars" />
           </button>
